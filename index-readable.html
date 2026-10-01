@@ -6,8 +6,9 @@
 <meta name="theme-color" content="#08070d">
 <meta name="description" content="Kovelt transforma ideas en software, webs y soluciones digitales para empresas.">
 <title>Kovelt — Ideas que se convierten en software</title>
+<link rel="preload" href="assets/hero-background.mp4" as="video" type="video/mp4" fetchpriority="high">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
 
 :root {
     --bg:#08070d;
@@ -1608,6 +1609,182 @@ body.intro-ready .hero-copy .actions {
     }
     
 }
+
+/* Hero centrado con video de fondo */
+.hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 110px 0 72px;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+.hero-video {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: .62;
+    filter: saturate(1.08);
+}
+.hero:before {
+    inset: 0;
+    z-index: -1;
+    opacity: 1;
+    background:
+        linear-gradient(180deg, rgba(8, 7, 13, .43), rgba(8, 7, 13, .54) 55%, rgba(8, 7, 13, .82)),
+        radial-gradient(ellipse at 50% 45%, rgba(8, 7, 13, .08), rgba(8, 7, 13, .44) 75%);
+}
+.hero:after {
+    right: 50%;
+    top: 8%;
+    transform: translateX(50%);
+    opacity: .72;
+}
+.hero-grid {
+    display: block;
+    width: min(var(--max), calc(100% - 48px));
+}
+.hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1100px;
+    margin: auto;
+    text-align: center;
+}
+.hero-copy .eyebrow {
+    justify-content: center;
+    margin-bottom: 25px;
+}
+.hero h1 {
+    max-width: 1100px;
+    margin: 0;
+    font-size: clamp(52px, 8.2vw, 108px);
+    line-height: .99;
+    letter-spacing: -.075em;
+    text-wrap: balance;
+}
+.hero p {
+    max-width: 680px;
+    margin: 26px auto 0;
+    color: #e0dce6;
+    font-size: clamp(15px, 1.4vw, 18px);
+    line-height: 1.75;
+}
+.hero .actions {
+    justify-content: center;
+    margin-top: 36px;
+    margin-bottom: 0;
+}
+.hero-note {
+    margin-top: 24px;
+    color: rgba(245, 243, 250, .68);
+    font: 10px 'IBM Plex Mono', monospace;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+.video-credit {
+    display: block;
+    margin-top: 8px;
+    color: #817b8a;
+    font-size: 9px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+@media (max-width: 700px) {
+    .hero {
+        padding: 100px 0 56px;
+    }
+    .hero-grid {
+        width: min(100% - 36px, 560px);
+    }
+    .hero h1 {
+        font-size: clamp(43px, 11.2vw, 68px);
+        line-height: 1.04;
+        letter-spacing: -.07em;
+    }
+    .hero h1 br {
+        display: none;
+    }
+    .hero p {
+        margin-top: 22px;
+        font-size: 15px;
+    }
+    .hero .actions {
+        width: 100%;
+        gap: 10px;
+        margin-top: 27px;
+    }
+    .hero .btn {
+        min-height: 58px;
+        padding: 16px 22px;
+        font-size: 13px;
+    }
+    .hero-video {
+        opacity: .48;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero-video {
+        display: none;
+    }
+    .hero:before {
+        background: linear-gradient(rgba(8, 7, 13, .56), rgba(8, 7, 13, .76)), url('assets/glow-waves.jpg') center / cover;
+    }
+}
+
+
+/* Ajustes del hero y marca en navegación */
+.brand img {
+    width: 156px;
+    height: 44px;
+}
+.hero-video {
+    opacity: .78;
+}
+.hero:before {
+    background:
+        linear-gradient(180deg, rgba(8, 7, 13, .24), rgba(8, 7, 13, .34) 55%, rgba(8, 7, 13, .66)),
+        radial-gradient(ellipse at 50% 45%, rgba(8, 7, 13, .04), rgba(8, 7, 13, .32) 75%);
+}
+.hero h1 {
+    max-width: 1000px;
+    font-family: "Archivo", "Instrument Sans", sans-serif;
+    font-size: clamp(44px, 6vw, 82px);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -.055em;
+}
+@media (max-width: 700px) {
+    .hero-video {
+        opacity: .64;
+    }
+    .hero h1 {
+        font-size: clamp(37px, 9.2vw, 58px);
+        line-height: 1.08;
+        letter-spacing: -.05em;
+    }
+}
+
+
+/* Mostrar el fondo en movimiento solo cuando el primer fotograma esté listo */
+.hero-video {
+    opacity: 0;
+    transition: opacity .22s ease;
+}
+.hero-video.is-ready {
+    opacity: .78;
+}
+@media (max-width: 700px) {
+    .hero-video.is-ready {
+        opacity: .64;
+    }
+}
+
+
 </style>
 </head>
 <body>
@@ -1637,7 +1814,7 @@ body.intro-ready .hero-copy .actions {
 <header class="topbar">
 <nav class="wrap">
 <a class="brand" href="#inicio" aria-label="Kovelt, inicio">
-<img src="assets/kovelt-lockup.jpg" alt="Kovelt">
+<img src="assets/kovelt-wordmark.jpg" alt="Kovelt">
 </a>
 <button class="menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
 <div class="navlinks">
@@ -1655,14 +1832,19 @@ body.intro-ready .hero-copy .actions {
 </header>
 <main>
 <section class="hero" id="inicio">
+<video class="hero-video" autoplay muted loop playsinline preload="auto" fetchpriority="high" aria-hidden="true" tabindex="-1">
+<source src="assets/hero-background.mp4" type="video/mp4">
+</video>
 <div class="wrap hero-grid">
 <div class="hero-copy reveal">
-<h1>Creamos soluciones digitales<br>que <span class="grad">hacen la diferencia.</span>
-</h1>
+<span class="eyebrow">Software para negocios reales</span>
+<h1>¿Y si el trabajo repetido<br><span class="grad">dejara de ser tu problema?</span></h1>
+<p>En Kovelt escuchamos cómo trabajás y creamos herramientas digitales a tu medida, para que puedas enfocarte en lo que importa.</p>
 <div class="actions">
-<a class="btn" href="#proyectos">Ver proyectos <span>→</span>
-</a>
+<a class="btn" href="#proyectos">Ver proyectos <span>→</span></a>
+<a class="btn secondary" href="https://wa.me/5492914079338?text=Hola%20Kovelt%2C%20quiero%20conversar%20sobre%20un%20proyecto%20digital." target="_blank" rel="noopener noreferrer">Contanos tu idea <span>↗</span></a>
 </div>
+<span class="hero-note">Sin tecnicismos. Primero, una charla.</span>
 </div>
 </div>
 </section>
@@ -2041,7 +2223,7 @@ body.intro-ready .hero-copy .actions {
 </a>
 <span>© <span id="year">
 </span> KOVELT. Ideas / Software / Innovación.</span>
-<span class="footer-right">HECHO PARA CRECER&nbsp; ↗</span>
+<span class="footer-right">HECHO PARA CRECER&nbsp; ↗
 </div>
 </footer>
 <a class="whatsapp-float" href="https://wa.me/5492914079338?text=Hola%20Kovelt%2C%20quiero%20conversar%20sobre%20un%20proyecto%20digital." target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp" title="Escribinos por WhatsApp">
@@ -2210,6 +2392,15 @@ document.querySelectorAll(".chip[data-industry]").forEach(btn=>btn.addEventListe
 }
 ));
 document.querySelector('#year').textContent=new Date().getFullYear();
+</script>
+<script>
+const heroVideo = document.querySelector(".hero-video");
+if (heroVideo) {
+    const revealHeroVideo = () => heroVideo.classList.add("is-ready");
+    heroVideo.addEventListener("loadeddata", revealHeroVideo, { once: true });
+    heroVideo.addEventListener("playing", revealHeroVideo, { once: true });
+    if (heroVideo.readyState >= 2) revealHeroVideo();
+}
 </script>
 </body>
 </html>
