@@ -128,11 +128,10 @@ section{padding:110px 0;scroll-margin-top:74px}.section-head{display:flex;align-
     }
 }
 @media (prefers-reduced-motion: reduce) {
-    .hero-video {
-        display: none;
-    }
-    .hero:before {
-        background: linear-gradient(rgba(8, 7, 13, .56), rgba(8, 7, 13, .76)), url('assets/glow-waves.jpg') center / cover;
+    /* El usuario pidió movimiento también en móvil: mantener el video visible. */
+    .hero-video.is-ready {
+        opacity: .58;
+        transition: none;
     }
 }
 
